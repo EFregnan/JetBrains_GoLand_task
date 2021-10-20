@@ -1,1 +1,3 @@
 *.class
+ task/target/classes/*.class
+*.DS_Store

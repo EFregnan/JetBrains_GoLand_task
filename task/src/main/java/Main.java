@@ -1,3 +1,6 @@
+import operations.Operation;
+import operations.SplitByWordOperation;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +19,14 @@ public class Main {
         }
         System.out.println("Please insert the word to query");
         String wordToQuery = consoleScanner.nextLine();
-        List<String> queryResults = queryElements(elementsToIndex, wordToQuery);
+        Operation operationOnFile = new SplitByWordOperation();
+        List<String> queryResults = queryElements(elementsToIndex, wordToQuery, operationOnFile);
         for(String result: queryResults){
             System.out.println("Query result: "+ queryResults);
         }
     }
 
-    public static List<String> queryElements(String[] elementsToIndex, String wordToQuery) throws FileNotFoundException {
+    public static List<String> queryElements(String[] elementsToIndex, String wordToQuery, Operation operationOnFile) throws FileNotFoundException {
         List<String> queryResults = new ArrayList<>();
         for(String path : elementsToIndex) {
             File file = new File(path);
@@ -30,36 +34,21 @@ public class Main {
                 throw new FileNotFoundException();
             } else {
                 if(file.isFile()){
-                    boolean wordFound = false;
-                    try {
-                        String resultPath = queryFile(file, wordToQuery);
-                        if(resultPath!=null){
-                            queryResults.add(resultPath);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    String resultPath = queryFile(file, wordToQuery, operationOnFile);
+                    if(resultPath!=null){
+                        queryResults.add(resultPath);
                     }
                 }
                 if(file.isDirectory()){
-                    queryResults.addAll(inspectFilesInDirectory(file, wordToQuery));
+                    queryResults.addAll(inspectFilesInDirectory(file, wordToQuery, operationOnFile));
                 }
             }
         }
         return queryResults;
     }
 
-    private static String queryFile(File fileToInspect, String wordToQuery) throws IOException {
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileToInspect));
-        String fileLine;
-        boolean wordFound = false;
-        while(((fileLine = fileReader.readLine()) != null) && !wordFound) {
-            String[] wordsInLine = fileLine.split(" ");
-            for(String word : wordsInLine) {
-                if(word.equals(wordToQuery)) {
-                    wordFound = true;
-                }
-            }
-        }
+    private static String queryFile(File fileToInspect, String wordToQuery, Operation operationToExecute) {
+        boolean wordFound = operationToExecute.tokenizeText(fileToInspect, wordToQuery);
         if(wordFound) {
             return fileToInspect.getPath();
         } else {
@@ -67,19 +56,15 @@ public class Main {
         }
     }
 
-    private static List<String> inspectFilesInDirectory(File directoryToInspect, String wordToQuery){
+    private static List<String> inspectFilesInDirectory(File directoryToInspect, String wordToQuery, Operation operationOnFile){
         List<String> resultPaths = new ArrayList<>();
         for(File file : directoryToInspect.listFiles()){
             if(file.isDirectory()){
-                resultPaths.addAll(inspectFilesInDirectory(file, wordToQuery));
+                resultPaths.addAll(inspectFilesInDirectory(file, wordToQuery, operationOnFile));
             } else {
-                try {
-                    String resultPath = queryFile(file, wordToQuery);
-                    if(resultPath != null){
-                        resultPaths.add(resultPath);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                String resultPath = queryFile(file, wordToQuery, operationOnFile);
+                if(resultPath != null){
+                    resultPaths.add(resultPath);
                 }
             }
         }
