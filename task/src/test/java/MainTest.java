@@ -12,16 +12,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
 
+    /**
+     * Tests if the query correctly returns the file test.txt
+     * which contains the word "test"
+     */
     @Test
     public void testFileWithSingleWordQuery(){
         final String fileName = "test.txt";
+        final String wordToQuery = "test";
         Operation splitByWordOperation = new SplitByWordOperation();
         URL resource = MainTest.class.getResource(fileName);
         try {
             String filePath = Paths.get(resource.toURI()).toAbsolutePath().toString();
-            List<String> queryResults = Main.queryElements(new String[]{filePath}, "test", splitByWordOperation);
+            List<String> queryResults = Main.queryElements(new String[]{filePath}, wordToQuery, splitByWordOperation);
             assertEquals(1, queryResults.size());
             assertEquals(filePath, queryResults.get(0));
+        } catch (URISyntaxException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Tests if the query correctly returns no result
+     * as the file "test.txt" does not contain the word "notFound"
+     */
+    @Test
+    public void testFileWordNotFoundQuery(){
+        final String fileName = "test.txt";
+        final String wordToQuery = "notFound";
+        Operation splitByWordOperation = new SplitByWordOperation();
+        URL resource = MainTest.class.getResource(fileName);
+        try {
+            String filePath = Paths.get(resource.toURI()).toAbsolutePath().toString();
+            List<String> queryResults = Main.queryElements(new String[]{filePath}, wordToQuery, splitByWordOperation);
+            assertEquals(0, queryResults.size());
         } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
         }
