@@ -9,16 +9,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Please insert the list of files or directories to index separated by a ';'");
-        Scanner consoleScanner = new Scanner(System.in);
-        String s = consoleScanner.nextLine();
-        s = s.replaceAll("\\s+","");
-        String[] elementsToIndex = s.split(";");
-        for(String s1 : elementsToIndex){
-            System.out.println(s1);
-        }
-        System.out.println("Please insert the word to query");
-        String wordToQuery = consoleScanner.nextLine();
+
+        Console console = new Console();
+        String[] elementsToIndex = console.parseUserListOfFiles();
+        String wordToQuery = console.parseWordToQuery();
         Operation operationOnFile = new SplitByWordOperation();
         List<String> queryResults = queryElements(elementsToIndex, wordToQuery, operationOnFile);
         for(String result: queryResults){
