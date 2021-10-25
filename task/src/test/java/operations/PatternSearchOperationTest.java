@@ -21,11 +21,31 @@ class PatternSearchOperationTest {
         final String patternToSearch = "test";
 
         PatternSearchOperation patternSearchOperation = new PatternSearchOperation();
-        URL resource = SplitByWordOperationTest.class.getResource(fileName);
+        URL resource = PatternSearchOperationTest.class.getResource(fileName);
         try {
             String filePath = Paths.get(resource.toURI()).toAbsolutePath().toString();
-            boolean wordFound = patternSearchOperation.tokenizeText(new File(filePath), patternToSearch);
-            assertEquals(true, wordFound);
+            boolean patternFound = patternSearchOperation.tokenizeText(new File(filePath), patternToSearch);
+            assertEquals(true, patternFound);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Tests if the toxenizeText method of PatternSearchOperation correctly
+     * does not find a pattern not present in the given file.
+     */
+    @Test
+    public void tokenizeTextNoWordTest(){
+        final String fileName = "/test.txt";
+        final String patternToSearch = "em";
+
+        PatternSearchOperation patternSearchOperation = new PatternSearchOperation();
+        URL resource = PatternSearchOperationTest.class.getResource(fileName);
+        try {
+            String filePath = Paths.get(resource.toURI()).toAbsolutePath().toString();
+            boolean patternFound = patternSearchOperation.tokenizeText(new File(filePath), patternToSearch);
+            assertEquals(false, patternFound);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
