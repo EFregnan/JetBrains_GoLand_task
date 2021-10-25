@@ -1,6 +1,6 @@
 # JetBrains_GoLand_task
 
-**Note:** this is a Maven project. 
+**Note:** this is a Maven project. The repository contains both the code developed for this task and a set of tests to check its functionalities. 
 
 This document provides some usage examples of the indexing tool. 
 
