@@ -2,8 +2,12 @@ package operations;
 
 import java.io.File;
 
+/**
+ * It allows to extend the set of operations supported by the program.
+ * New operations must implement this interface and the method tokenizeText.
+ */
 public interface Operation {
 
-    public abstract boolean tokenizeText(File fileToInspect, String wordToQuery);
+    boolean tokenizeText(File fileToInspect, String wordToQuery);
 
 }
