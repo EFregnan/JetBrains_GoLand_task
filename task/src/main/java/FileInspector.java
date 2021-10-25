@@ -5,8 +5,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class FileInspector {
 
+    /**
+     * Creats a console to collect the user inputs and starts the query.
+     * @param args
+     */
     public static void main(String[] args) {
         Console console = new Console();
         String[] elementsToIndex = console.parseUserListOfFiles();
