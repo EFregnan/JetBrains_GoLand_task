@@ -1,6 +1,8 @@
 # JetBrains_GoLand_task
 
-This documents provides some usage examples of the indexing tool.
+**Note:** this project is a Maven project. 
+
+This document provides some usage examples of the indexing tool. 
 
 ### Example 1 - Search for a word in a list of files or directories.
 
