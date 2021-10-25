@@ -7,12 +7,12 @@ import java.io.IOException;
 
 /**
  * Implements a "split by word" operation, where the text is divided in words
- * and a specific word (provided by the user) is queried
+ * and a specific word (provided by the user) is queried.
  */
 public class SplitByWordOperation implements Operation {
 
     /**
-     * Splits the given file into words and search for a word
+     * Splits the given file into words and search for a word.
      * @param fileToInspect - the file to inspect
      * @param wordToQuery - the word to be searched for in the file
      * @return wordFound - true, if the file contains wordToQuery, false otherwise.

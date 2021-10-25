@@ -9,14 +9,12 @@ import java.util.Random;
 
 /**
  * Implements an operation to search for a pattern in a given text using
- * Rabin Karp algorithm.
+ * the Rabin Karp algorithm.
  */
 public class PatternSearchOperation implements Operation {
 
-    private static final int numberOfAlphabetCharacters = 256;
-
     /**
-     * Searches for a pattern in the content of a file
+     * Searches for a pattern in the content of a file.
      * @param fileToInspect - the file to inspect
      * @param wordToQuery - the pattern to be searched for in the file
      * @return patternFound - true, if the file contains wordToQuery, false otherwise.
@@ -82,6 +80,11 @@ public class PatternSearchOperation implements Operation {
         return false;
     }
 
+    /**
+     * Computes the number of bits necessary to represent a given number.
+     * @param number - the number of which compute the bits
+     * @return the number of bits of the given number
+     */
     private int getNumberOfBits(int number) {
         return Integer.SIZE - Integer.numberOfLeadingZeros(number);
     }

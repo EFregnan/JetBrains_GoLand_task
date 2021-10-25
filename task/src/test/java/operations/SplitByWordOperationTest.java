@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SplitByWordOperationTest {
 
     /**
-     * Tests if the toxenizeText method of SplitByWordOperation correctly
+     * Tests if the tokenizeText method of SplitByWordOperation correctly
      * finds a given word in a file.
      */
     @Test
@@ -33,8 +33,8 @@ class SplitByWordOperationTest {
     }
 
     /**
-     * Tests if the toxenizeText method of SplitByWordOperation correctly
-     * not find a word not present in the given file.
+     * Tests if the tokenizeText method of SplitByWordOperation correctly
+     * does not find a word not present in the given file.
      */
     @Test
     public void tokenizeTextNoWordTest(){

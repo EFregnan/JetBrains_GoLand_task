@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PatternSearchOperationTest {
 
     /**
-     * Tests if the toxenizeText method of PatternSearchOperation correctly
+     * Tests if the tokenizeText method of PatternSearchOperation correctly
      * finds a given pattern in a file.
      */
     @Test
@@ -32,7 +32,7 @@ class PatternSearchOperationTest {
     }
 
     /**
-     * Tests if the toxenizeText method of PatternSearchOperation correctly
+     * Tests if the tokenizeText method of PatternSearchOperation correctly
      * does not find a pattern not present in the given file.
      */
     @Test

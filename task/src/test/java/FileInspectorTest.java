@@ -21,7 +21,7 @@ public class FileInspectorTest {
 
     /**
      * Tests if the query using SplitByWordOperation correctly returns the file test.txt
-     * which contains the word "test"
+     * which contains the word "test".
      */
     @Test
     public void testFileWithSingleWordQuery(){
@@ -41,7 +41,7 @@ public class FileInspectorTest {
 
     /**
      * Tests if the query using SplitByWordOperation correctly returns no result
-     * as the file "test.txt" does not contain the word "notFound"
+     * as the file "test.txt" does not contain the word "notFound".
      */
     @Test
     public void testFileWordNotFoundQuery(){
@@ -147,7 +147,7 @@ public class FileInspectorTest {
 
     /**
      * Tests if the query using PatternSearchOperation correctly returns the file test.txt
-     * which contains the word "test"
+     * which contains the pattern "te".
      */
     @Test
     public void testFileWithPatternQuery(){
@@ -167,7 +167,7 @@ public class FileInspectorTest {
 
     /**
      * Tests if the query using PatternSearchOperation correctly returns no result
-     * as the file "test.txt" does not contain the word "notFound"
+     * as the file "test.txt" does not contain the pattern "not".
      */
     @Test
     public void testFilePatternNotFoundQuery(){
@@ -185,7 +185,7 @@ public class FileInspectorTest {
     }
 
     /**
-     * Tests if the query using PatternSearchOperation correctly returns the files containing a given word
+     * Tests if the query using PatternSearchOperation correctly returns the files containing a given pattern
      * when they are contained in a given directory.
      */
     @Test
@@ -214,7 +214,7 @@ public class FileInspectorTest {
     }
 
     /**
-     * Tests if the query using PatternSearchOperation correctly returns the files containing a given word
+     * Tests if the query using PatternSearchOperation correctly returns the files containing a given pattern
      * when both a file and a directory are specified by the user.
      */
     @Test
@@ -249,7 +249,7 @@ public class FileInspectorTest {
     }
 
     /**
-     * Tests if the query using PatternSearchOperation correctly returns the file containing a given word
+     * Tests if the query using PatternSearchOperation correctly returns the file containing a given pattern
      * when the specified directory contains another directory.
      */
     @Test
@@ -278,7 +278,7 @@ public class FileInspectorTest {
 
 
     /**
-     * Tests if the method correctly throws an exception when a file that non exists is specified
+     * Tests if the method correctly throws an exception when a non-existing files is specified
      */
     @Test
     public void testFileNotExistsQuery(){

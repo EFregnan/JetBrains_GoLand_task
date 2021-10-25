@@ -1,5 +1,7 @@
 import operations.Operation;
+import operations.PatternSearchOperation;
 import operations.SplitByWordOperation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,20 +10,38 @@ import java.util.List;
 public class FileInspector {
 
     /**
-     * Creats a console to collect the user inputs and starts the query.
+     * Creates a console to collect the user inputs and starts the query.
      * @param args
      */
     public static void main(String[] args) {
         Console console = new Console();
         String[] elementsToIndex = console.parseUserListOfFiles();
-        String wordToQuery = console.parseWordToQuery();
-        Operation operationOnFile = new SplitByWordOperation();
+        Operation operationOnFile = console.parseOperation();
+        String elementToQuery = getQueryItemForOperation(operationOnFile, console);
         try {
-            List<String> queryResults = queryElements(elementsToIndex, wordToQuery, operationOnFile);
+            List<String> queryResults = queryElements(elementsToIndex, elementToQuery, operationOnFile);
             console.printQueryResults(queryResults);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Calls the appropriate console method for each possible operation the user selected
+     * and returns the user input.
+     * @param operationOnFile - The operation selected by the user
+     * @param console - A Console object to handle input/output
+     * @return elementToQuery - a String representing the element to search for in the given files
+     */
+    private static String getQueryItemForOperation(Operation operationOnFile, Console console) {
+        String elementToQuery = null;
+        if(operationOnFile instanceof SplitByWordOperation) {
+            elementToQuery = console.parseWordToQuery();
+        }
+        if(operationOnFile instanceof PatternSearchOperation) {
+            elementToQuery = console.parsePatternToQuery();
+        }
+        return elementToQuery;
     }
 
     /**
